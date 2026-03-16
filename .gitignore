@@ -1,2 +1,14 @@
-*~
-*.pdf
+# Ignore everything
+*
+
+# Allow directories so git can traverse them
+!*/
+
+# Allow markdown files
+!*.md
+
+# Allow yaml files
+!*.yml
+
+# Allow the gitignore file itself
+!.gitignore

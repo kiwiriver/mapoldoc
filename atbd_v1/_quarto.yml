@@ -1,0 +1,16 @@
+project:
+  type: book
+
+book:
+  title: "FastMAPOL Algorithm Theoretical Basis Document"
+  chapters:
+    - index.md
+    - ../chapters/fastmapol_ocean_model.md
+
+format:
+  html:
+    toc: true
+    number-sections: true
+
+  pdf:
+    number-sections: true

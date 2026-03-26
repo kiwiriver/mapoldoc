@@ -1,20 +1,7 @@
 # Ignore Jupyter checkpoint dirs anywhere
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
-
-# Ignore everything
-*
-
-# Allow directories, except checkpoints
-!*/
-.ipynb_checkpoints/
-
-# Allow markdown files
-!*.md
-
-# Allow yaml files
-!*.yml
-
-# Allow the gitignore file itself
-!.gitignore
+*.html
+**/site_libs
+*.pdf
 

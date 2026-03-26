@@ -1,0 +1,58 @@
+project:
+  type: book
+  output-dir: book
+
+book:
+  title: "FastMAPOL Algorithm Theoretical Basis Document"
+  subtitle: "PACE Polarimeter Aerosol and Ocean Retrieval"
+  author: Drafting
+  date: today
+
+  chapters:
+    - index.md
+    - ../chapters/fastmapol_summary.md
+    - ../chapters/fastmapol_retrieval.md
+    - ../chapters/fastmapol_neural_network.md
+    - ../chapters/fastmapol_pace_simulator.md
+    - ../chapters/fastmapol_aerosol_summary.md
+    - ../chapters/fastmapol_ocean_color.md
+    - ../chapters/fastmapol_product.md
+    - ../chapters/fastmapol_validation_harp2.md
+    - ../chapters/fastmapol_validation_spexone.md
+    - ../chapters/fastmapol_tutorial.md
+
+  appendices:
+    - ../chapters/fastmapol_appendix_intro.md   # <-- creates "Technical Details" section
+    - ../chapters/fastmapol_aerosol_size.md
+    - ../chapters/fastmapol_aerosol_lidar.md
+    - ../chapters/fastmapol_aerosol_inversion.md
+    - ../chapters/fastmapol_aerosol_mixing.md
+    - ../chapters/fastmapol_uncertainty_pixel.md
+    - ../chapters/fastmapol_uncertainty_correlation.md
+    - ../chapters/fastmapol_model_ocean.md
+    - ../chapters/fastmapol_model_land.md
+
+bibliography: ../bib/lmfit5.bib
+
+number-sections: true
+number-depth: 3
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+    code-fold: false
+    smooth-scroll: true
+
+  pdf:
+    keep-tex: true
+    documentclass: scrbook
+    toc: true
+    toc-depth: 3
+    lof: true
+    lot: true
+    colorlinks: true
+    geometry:
+      - margin=1in
+    include-in-header: header.tex   # optional (see below)

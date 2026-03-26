@@ -93,6 +93,12 @@ $$
 
 The parameter $B_p$ is assumed to be **spectrally independent** (@Huot:2008aa).
 
+### Phase matrix (TBD)
+- water
+- NAP
+- Phytoplankton (FF)
+
+
 ## Bio-2 Optical Model (Five-Parameter Model)
 
 The **Bio-2 model** describes optically complex coastal waters using a five-parameter parameterization.

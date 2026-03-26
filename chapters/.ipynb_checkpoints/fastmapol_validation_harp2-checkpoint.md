@@ -1,9 +1,16 @@
-# Pre-launch HARP2 L2 product validation and uncertainty analysis
+# HARP2 L2 aerosol product validation (Pre-Launch DITL test)
 
 ## Overview
 
 Pre-launch Day-in-the-Life (DITL) simulations provide an end-to-end benchmark of HARP2 measurement realism, L2 retrieval performance, and uncertainty characterization. The results below highlight three key aspects: synthetic observations, pixel-wise retrieval performance, and uncertainty analysis. Details are provided in @Gao:2023aa.
 
+## Summary Information
+
+- **FastMAPOL version:** Prelaunch Test  
+- **Data period:** March 21, 2022 (spring equinox)  
+- **Reference:** Synthetic HARP2  
+- **Published:** Dec 07, 2023 (https://doi.org/10.5194/amt-16-5863-2023)
+  
 ## Synthetic HARP2 observations
 As shown in @fig-validation_harp2_l1c, A full day of synthetic HARP2 observations is generated using a neural network forward model for both reflectance and DoLP. Aerosol and surface properties are prescribed from reanalysis (MERRA-2). The simulated observations provide a realistic testbed for retrieval evaluation:
 

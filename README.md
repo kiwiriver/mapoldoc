@@ -1,11 +1,16 @@
 <!---![FastMAPO Logo](img/fastmapol1.png)--->
-<img src="img/fastmapol1.png" alt="drawing" width="500"/>
+<img src="logo/fastmapol1.png" alt="drawing" width="500"/>
 
 # FastMAPOL ATBD Builder
 
 This repository contains the source files for the **FastMAPOL Algorithm Theoretical Basis Document (ATBD)**. The ATBD documents the scientific methodology, forward models, retrieval algorithms, and data products for the FastMAPOL system used with PACE polarimeter observations (HARP2 and SPEXone).
 
 The document is written in **Markdown** and compiled into a structured report (HTML/PDF) using **Quarto**.
+
+
+## Rendered pdf preview:
+pdf: https://oceancolor.gsfc.nasa.gov/fileshare/meng_gao/pace/fastmapol_atbd_v1/_book/FastMAPOL-Algorithm-Theoretical-Basis-Document.pdf
+html (for only internal user): http://localhost:8200/fileshare/meng_gao/pace/fastmapol_atbd_v1/_book/
 
 ---
 
@@ -25,7 +30,7 @@ The ATBD provides a complete description of these components and their implement
 ## Repository Structure
 
     mapoldoc/
-    ├── atbd_v1/        # Quarto build directory
+    ├── atbd_v1/        # build atbd directory with Quarto 
     ├── chapters/       # Chapter files (Markdown)
     ├── figure/         # Figures
     ├── bib/            # Bibliography files (optional)

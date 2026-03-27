@@ -35,7 +35,19 @@ f_{geo} K_{geo}(\theta_s,\theta_v,\phi_r)
 B_{pol}\mathbf{K}_{pol}
 $$
 
-where $\mathbf{E}$ is the 4 $\times$ 4 null matrix except for $E_{11}=1$, $\mathbf{K}_{pol}$ is the polarization Kernel proportional to the Fresnel reflection matrix.
+where $\mathbf{E}$ is the 4 $\times$ 4 null matrix except for $E_{11}=1$,
+
+$$
+\mathbf{E} =
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+$$
+
+$\mathbf{K}_{pol}$ is the polarization Kernel proportional to the Fresnel reflection matrix.
 
 <!-- **Questions: why $|\cos\theta_s|$ is used here, how $\mathbf{R}$ is defined?**
 ## **I inserted a definition of R to explain the factor $|\cos\theta_s|$. pwzhai 03/26/2026 **
@@ -46,8 +58,10 @@ where $\mathbf{E}$ is the 4 $\times$ 4 null matrix except for $E_{11}=1$, $\math
 | Parameter | Description |
 |---|---|
 | $\theta_s$ | solar zenith angle |
+| $\phi_s$ | solar azimuth angle |
 | $\theta_v$ | viewing zenith angle |
-| $\phi_r$ | relative azimuth angle |
+| $\phi_v$ | viewing azimuth angle |
+| $\phi_r=\phi_v-\phi_s$ | relative azimuth angle |
 | $f_{iso}$ | isotropic reflectance coefficient |
 | $f_{vol}$ | volumetric scattering coefficient |
 | $f_{geo}$ | geometric scattering coefficient |
@@ -73,9 +87,9 @@ f'_{geo} K_{geo}
 B_{pol}\mathbf{K}_{pol}
 $$
 
-where:
-- $f'_{iso}(\lambda)$ is spectrally dependent \
-- $f'_{vol}$ and $f'_{geo}$ are spectrally invariant  
+where 
+- $f'\_{iso}(\lambda)$ is spectrally dependent, and
+- $f'\_{vol}$ and $f'\_{geo}$ are spectrally invariant  
 
 The relationship to the physical parameters is:
 
@@ -169,28 +183,28 @@ K_{vol} =
 {|\mu_s| + |\mu_v|}-\frac{\pi}{4}
 $$
 
-Reference: Wanner et al. (1995), JGR.
+Reference: Roujean et al. (1992), JGR Atmosphere; Wanner et al. (1995), JGR.
 
 ## Li Geometric Kernel (Li-Sparse-R)
 
 Define tangent terms:
 
 $$
-\tan\theta_s = \frac{\sqrt{1-\mu_s^2}}{|\mu_s|}
+|\tan\theta_s| = \frac{\sqrt{1-\mu_s^2}}{|\mu_s|}
 $$
 
 $$
-\tan\theta_v = \frac{\sqrt{1-\mu_v^2}}{|\mu_v|}
+|\tan\theta_v| = \frac{\sqrt{1-\mu_v^2}}{|\mu_v|}
 $$
 
 Projected angles:
 
 $$
-\theta'_s = \tan^{-1}(B/R \cdot \tan\theta_s)
+\theta'_s = \tan^{-1}(B/R \cdot |\tan\theta_s|)
 $$
 
 $$
-\theta'_v = \tan^{-1}(B/R \cdot \tan\theta_v)
+\theta'_v = \tan^{-1}(B/R \cdot |\tan\theta_v|)
 $$
 
 | Parameter | Meaning |
@@ -219,11 +233,11 @@ $$
 Define:
 
 $$
-sec_s = \frac{1}{\cos\theta'_s}
+\sec\theta'_s = \frac{1}{\cos\theta'_s}
 $$
 
 $$
-sec_v = \frac{1}{\cos\theta'_v}
+\sec\theta'_v = \frac{1}{\cos\theta'_v}
 $$
 
 ### Ancillary Function <!-- (meaning?) -->
@@ -234,7 +248,7 @@ $$
 \sqrt{
 D^2 + (\tan\theta'_s\tan\theta'_v\sin(\phi_r+\pi))^2
 }}
-{sec_s + sec_v}
+{\sec\theta'_s + \sec\theta'_v}
 $$
 
 If
@@ -254,13 +268,13 @@ Otherwise
 $$
 O =
 \frac{1}{\pi}(t - \sin t \\, \cos t)
-(sec_s + sec_v)
+(\sec\theta'_s + \sec\theta'_v)
 $$
 
 ## Final Geometric Kernel
 
 $$
-K_{geo} = O - sec_s - sec_v + \frac{1}{2}(1+\cos\xi) \\, sec_s \\,  sec_v
+K_{geo} = O - \sec\theta'_s - \sec\theta'_v + \frac{1}{2}(1+\cos\xi) \\, \sec\theta'_s \\,  \sec\theta'_v
 $$
 
 ## Polarized Surface Reflectance (BPDF)
@@ -378,3 +392,5 @@ Journal of Geophysical Research.
 
 MODIS Surface Reflectance ATBD  
 https://modis.gsfc.nasa.gov/data/atbd/atbd_mod09.pdf
+
+Roujean, J.-L., M.Leroy, and P.-Y.Deschamps (1992), A bidirectional reflectance model of the Earth's surface for the correction of remote sensing data, J. Geophys. Res., 97(D18), 20455–20468, doi:10.1029/92JD01411.

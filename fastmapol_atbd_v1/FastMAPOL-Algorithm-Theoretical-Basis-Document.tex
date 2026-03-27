@@ -3646,24 +3646,37 @@ reflection.
 
 \section{Surface Reflectance Model}\label{surface-reflectance-model}
 
-The polarized land surface reflectance is expressed as
+The bidirectional reflectance distribution matrix \(\mathbf{R}\) of land
+surface converts the downwelling irradiance vector \(\mathbf{F}_s\) to
+upwelling radiance vector \(\mathbf{I}\) by:
 
 \[
-\mathbf{R}(\theta_s,\theta_v,\phi) =
-|\cos\theta_s|
+\mathbf{I}(\theta_v,\phi_v)= \frac{1}{\pi}\mathbf{R}(\theta_s,\theta_v,\phi_r) \\, |\cos\theta_s| \\, \mathbf{F}_s(\theta_s,\phi_s) 
+\]
+
+where \(\theta\) and \(\phi\) are the zenith and azimuth angles,
+respectively; the subscripts \(s\) and \(v\) denote the incident and
+reflected directions, respectively; \(\phi_r=\phi_v-\phi_s\) is the
+relative azimuth angle of the reflected and incident directions.
+
+In the FastMAPOL algorithm the matrix \(\mathbf{R}\) is modeled by:
+
+\[
+\mathbf{R}(\theta_s,\theta_v,\phi_r) =
 \left[
 f_{iso}
 +
-f_{vol} K_{vol}(\theta_s,\theta_v,\phi)
+f_{vol} K_{vol}(\theta_s,\theta_v,\phi_r)
 +
-f_{geo} K_{geo}(\theta_s,\theta_v,\phi)
-\right]\mathbf{I}
+f_{geo} K_{geo}(\theta_s,\theta_v,\phi_r)
+\right]\mathbf{E}
 +
 B_{pol}\mathbf{K}_{pol}
 \]
 
-\textbf{Questions: why \(|\cos\theta_s|\) is used here, how
-\(\mathbf{R}\) is defined?}
+where \(\mathbf{E}\) is the 4 \(\times\) 4 null matrix except for
+\(E_{11}=1\), \(\mathbf{K}_{pol}\) is the polarization Kernel
+proportional to the Fresnel reflection matrix.
 
 \subsection{Parameter Definitions}\label{parameter-definitions}
 
@@ -3674,13 +3687,13 @@ Parameter & Description \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\$ \theta\_s \$ & solar zenith angle \\
-\$ \theta\_v \$ & viewing zenith angle \\
-\$ \phi \$ & relative azimuth angle \\
-\$ f\_\{iso\} \$ & isotropic reflectance coefficient \\
-\$ f\_\{vol\} \$ & volumetric scattering coefficient \\
-\$ f\_\{geo\} \$ & geometric scattering coefficient \\
-\$ B\_\{pol\} \$ & polarization strength \\
+\(\theta_s\) & solar zenith angle \\
+\(\theta_v\) & viewing zenith angle \\
+\(\phi_r\) & relative azimuth angle \\
+\(f_{iso}\) & isotropic reflectance coefficient \\
+\(f_{vol}\) & volumetric scattering coefficient \\
+\(f_{geo}\) & geometric scattering coefficient \\
+\(B_{pol}\) & polarization strength \\
 \end{longtable}
 
 \subsection{Scaled Parameter Formulation (Training
@@ -3690,8 +3703,7 @@ For parameter sampling (e.g., in neural network training), a scaled
 formulation similar to \textbf{RemoTAP} is used:
 
 \[
-\mathbf{R}(\theta_s,\theta_v,\phi) =
-|\cos\theta_s|
+\mathbf{R}(\theta_s,\theta_v,\phi_r) =
 \left[
 f'_{iso}(\lambda)
 \left(
@@ -3701,13 +3713,13 @@ f'_{vol} K_{vol}
 +
 f'_{geo} K_{geo}
 \right)
-\right]\mathbf{I}
+\right]\mathbf{E}
 +
 B_{pol}\mathbf{K}_{pol}
 \]
 
-where: - \$ f'\emph{\{iso\}(\lambda) \$ is spectrally dependent\\
-- \$ f'}\{vol\} \$, \$ f'\_\{geo\} \$ are spectrally invariant
+where: - \(f'_{iso}(\lambda)\) is spectrally dependent\\
+- \(f'_{vol}\) and \(f'_{geo}\) are spectrally invariant
 
 The relationship to the physical parameters is:
 
@@ -3753,7 +3765,9 @@ Relative azimuth:
 
 \subsection{RTSOS Geometry Convention}\label{rtsos-geometry-convention}
 
-The model follows the \textbf{RTSOS photon ray convention}.
+The model follows the \textbf{RTSOS light ray convention}, i.e., the
+zenith and azimuth angles are associated with the directional vector of
+the ligh ray.
 
 \subsubsection{Geometry Definitions}\label{geometry-definitions}
 
@@ -3764,10 +3778,10 @@ Quantity & RTSOS definition \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-solar zenith & \$ \theta\_s \textgreater{} 90\^{}\circ \$ \\
-solar azimuth & \$ \phi\_s = 0 \$ \\
-viewing zenith & \$ \theta\_v \textless{} 90\^{}\circ \$ \\
-relative azimuth & \$ \phi\_r = \phi\_v - \phi\_s \$ \\
+solar zenith & \(\theta_s > 90^\circ\) \\
+solar azimuth & \(\phi_s = 0\) \\
+viewing zenith & \(\theta_v < 90^\circ\) \\
+relative azimuth & \(\phi_r = \phi_v - \phi_s\) \\
 \end{longtable}
 
 \subsubsection{Scattering Planes}\label{scattering-planes}
@@ -3779,8 +3793,8 @@ Condition & Geometry \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\$ \phi\_r = 0 \$ & forward scattering \\
-\$ \phi\_r = \pi \$ & backscattering \\
+\(\phi_r = 0\) & forward scattering \\
+\(\phi_r = \pi\) & backscattering \\
 \end{longtable}
 
 \subsubsection{Scattering Angle}\label{scattering-angle}
@@ -3810,10 +3824,8 @@ canopies.
 
 \[
 K_{vol} =
-\frac{\left(\frac{\pi}{2}-\Theta\right)\cos\Theta + \sin\Theta}
-{|\mu_s| + |\mu_v|}
--
-\frac{\pi}{4}
+\frac{\left(\frac{\pi}{2}-\Theta_{phase}\right)\cos\Theta_{phase} + \sin\Theta_{phase}}
+{|\mu_s| + |\mu_v|}-\frac{\pi}{4}
 \]
 
 Reference: Wanner et al.~(1995), JGR.
@@ -3848,7 +3860,7 @@ Parameter & Meaning \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\$ B/R \$ & vertical-to-horizontal crown ratio \\
+\(B/R\) & vertical-to-horizontal crown ratio \\
 \end{longtable}
 
 \subsection{Projected Phase Angle}\label{projected-phase-angle}
@@ -3880,12 +3892,12 @@ sec_s = \frac{1}{\cos\theta'_s}
 sec_v = \frac{1}{\cos\theta'_v}
 \]
 
-\subsection{Ancillary Function
-(meaning?)}\label{ancillary-function-meaning}
+\subsection{\texorpdfstring{Ancillary Function
+}{Ancillary Function }}\label{ancillary-function}
 
 \[
 \cos t =
-\frac{H/B
+\frac{H}{B}\frac{
 \sqrt{
 D^2 + (\tan\theta'_s\tan\theta'_v\sin(\phi_r+\pi))^2
 }}
@@ -3908,21 +3920,14 @@ Otherwise
 
 \[
 O =
-(\arccos(\cos t) - \sin t \cos t)
-\frac{sec_s + sec_v}{\pi}
+\frac{1}{\pi}(t - \sin t \\, \cos t)
+(sec_s + sec_v)
 \]
 
 \section{Final Geometric Kernel}\label{final-geometric-kernel}
 
 \[
-K_{geo} =
-O
--
-sec_s
--
-sec_v
-+
-\frac{1}{2}(1+\cos\xi)sec_s sec_v
+K_{geo} = O - sec_s - sec_v + \frac{1}{2}(1+\cos\xi) \\, sec_s \\,  sec_v
 \]
 
 \section{Polarized Surface Reflectance
@@ -4007,34 +4012,7 @@ with
 v_{fac} = 0.1
 \]
 
-\subsection{Final Surface Mueller
-Matrix}\label{final-surface-mueller-matrix}
-
-\[
-\mathbf{M} =
-|\mu_s|
-\left[
-f_{iso}
-+
-f_{vol}K_{vol}
-+
-f_{geo}K_{geo}
-\right]
-\mathbf{I}
-+
-B_{pol}\mathbf{K}_{pol}
-\]
-
-Note: The original formulation includes an NDVI factor in
-\(\mathbf{K}_{pol}\), which is absorbed into \$ B\_\{pol\} \$.
-
-For scalar radiative transfer simulations, only
-
-\[
-M_{11}
-\]
-
-is used.
+For scalar radiative transfer simulations, only \(R_{11}\) is used.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

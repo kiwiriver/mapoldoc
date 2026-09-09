@@ -208,11 +208,13 @@ HARP2 Level-2 products are composited into global Level-3 binned and mapped prod
 
 FastMAPOL products (`MAPOL_OCEAN` and `MAPOL_LAND`) can be accessed and explored using NASA's `earthaccess` Python package, which provides tools for discovering and accessing data through NASA Earthdata. The following tutorials from PACE Help Hub demonstrate how to search for, download, analyze, and visualize the data products using Jupyter notebooks.
 
-These notebook tutorials are available through the [PACE Help Hub](https://nasa.github.io/oceandata-notebooks/sections/cloud-atmosphere.html).
+The atmspheric notebook tutorials are available through the [PACE Help Hub Atmosphere Section](https://nasa.github.io/oceandata-notebooks/sections/cloud-atmosphere.html).
 
 - [HARP2 Ocean Aerosols (FastMAPOL)](https://nasa.github.io/oceandata-notebooks/notebooks/harp2/harp2_l2_fastmapol_aerosol_ocean_product.html) - Working with aerosol data over ocean from the HARP2 polarimeter with the FastMAPOL algorithm
 - [HARP2 Land Aerosols (FastMAPOL)](https://nasa.github.io/oceandata-notebooks/notebooks/harp2/harp2_l2_fastmapol_aerosol_land_product.html) - Working with aerosol data over land from the HARP2 polarimeter with the FastMAPOL algorithm
 - [SPEXone Aerosols (FastMAPOL)](https://nasa.github.io/oceandata-notebooks/notebooks/spexone/spexone_l2_fastmapol_aerosol_product.html) - Analyzing aerosol retrievals over ocean from SPEXone measurements with the FastMAPOL algorithm
+
+The land notebook tutorials are available through the [PACE Help Hub Land Section](https://nasa.github.io/oceandata-notebooks/sections/land.html).
 
 # Data Visualization with SeaDAS {.unnumbered} 
 <!--

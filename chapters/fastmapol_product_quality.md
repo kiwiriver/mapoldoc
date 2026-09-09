@@ -52,16 +52,20 @@ Because SPEXone and HARP2 have different spectral and angular sampling configura
 ### SPEXone
 
 For SPEXone, the quality criteria are based on the following combinations of `chi2`, `nv_ref`, and `nv_dolp`:
-
+  
 | `quality_flag` | Criteria |
 |---|---|
-| `0` | `chi2 < 1.5`, `nv_ref > 160`, and `nv_dolp > 160` |
-| `1` | `chi2 < 1.5`, `nv_ref > 140`, and `nv_dolp > 140` |
-| `2` | `chi2 < 2.0`, `nv_ref > 140`, and `nv_dolp > 140` |
-| `3` | `chi2 < 2.0`, `nv_ref > 100`, and `nv_dolp > 100` |
-| `>3` | Progressively relaxed criteria associated with larger `chi2` and/or smaller `nv_ref` and `nv_dolp` |
+| `0` | `chi2 <= 1.5`, `nv_ref >= 160`, `nv_dolp >= 160` |
+| `1` | `chi2 <= 1.5`, `nv_ref >= 140`, `nv_dolp >= 140`; excluding flag `0` |
+| `2` | `chi2 <= 2.0`, `nv_ref >= 140`, `nv_dolp >= 140`; excluding flags `0–1` |
+| `3` | `chi2 <= 2.0`, `nv_ref >= 100`, `nv_dolp >= 100`; excluding flags `0–2` |
+| `4` | `chi2 <= 3.0`, `nv_ref >= 60`, `nv_dolp >= 60`; excluding flags `0–3` |
 
-For the current SPEXone FastMAPOL products, there are 34 spectral bands at 5 viewing angles, corresponding to a maximum of 170 reflectance or DoLP measurements. The thresholds of `nv > 160` and `nv > 140` therefore correspond to retaining approximately 94% and 82% of the available measurements, respectively.
+The quality flags progressively relaxed criteria associated with larger `chi2` and/or smaller `nv_ref` and `nv_dolp`. 
+
+<!--Only pixels with `chi2<=5`, `nv_ref>=30` and `nv_dolp>=30` will be outputed in the data file. -->
+
+For the current SPEXone FastMAPOL products, there are 34 spectral bands at 5 viewing angles, corresponding to a maximum of 170 reflectance or DoLP measurements. The thresholds of `nv >= 160` and `nv >= 140` therefore correspond to retaining approximately 94% and 82% of the available measurements, respectively.
 
 The SPEXone quality-flag definition remains unchanged between V3 and V4. `quality_flag = 0` applies the most stringent criteria and was used for the primary validation of the SPEXone FastMAPOL product (@Gao:2026aa). However, retrievals with `quality_flag = 1`, or in some applications `quality_flag = 2`, may also be included when greater spatial or temporal coverage is desired. Users may additionally apply their own thresholds directly to `chi2`, `nv_ref`, and `nv_dolp` when a different balance between retrieval quality and coverage is appropriate.
 
@@ -71,15 +75,20 @@ HARP2 has a substantially different angular sampling configuration from SPEXone,
 
 The V4 quality flags are defined as follows:
 
-| `quality_flag` | V4 criteria |
-|---|---|
-| `0` | `chi2 < 1.5`, `nv_ref > 70`, and `nv_dolp > 70` |
-| `1` | `chi2 < 1.5`, `nv_ref > 60`, and `nv_dolp > 60` |
-| `2` | `chi2 < 1.5`, `nv_ref > 40`, and `nv_dolp > 40` |
-| `3` | `chi2 < 2.0`, `nv_ref > 30`, and `nv_dolp > 30` |
-| `>3` | Progressively relaxed criteria associated with larger `chi2` and/or smaller `nv_ref` and `nv_dolp` |
+| `quality_flag` | V4 criteria                                                           |
+| -------------- | --------------------------------------------------------------------- |
+| `0`            | `chi2 <= 1.5`, `nv_ref >= 70`, `nv_dolp >= 70`                        |
+| `1`            | `chi2 <= 1.5`, `nv_ref >= 60`, `nv_dolp >= 60`; excluding flag `0`    |
+| `2`            | `chi2 <= 1.5`, `nv_ref >= 40`, `nv_dolp >= 40`; excluding flags `0–1` |
+| `3`            | `chi2 <= 2.0`, `nv_ref >= 30`, `nv_dolp >= 30`; excluding flags `0–2` |
+| `4`            | `chi2 <= 2.0`, `nv_ref >= 20`, `nv_dolp >= 20`; excluding flags `0–3` |
+| `5`            | `chi2 <= 3.0`, `nv_ref >= 10`, `nv_dolp >= 10`; excluding flags `0–4` |
 
-For HARP2, a total of 90 angular measurements are available for reflectance and polarization. Thus, the V4 thresholds of `nv > 70` and `nv > 60` correspond to retaining approximately 78% and 67% of the available measurements, respectively.
+The quality flags progressively relaxed criteria associated with larger `chi2` and/or smaller `nv_ref` and `nv_dolp`. 
+
+<!--Only pixels with `chi2<=5`, `nv_ref>=10` and `nv_dolp>=10` will be outputed in the data file. -->
+
+For HARP2, a total of 90 angular measurements are available for reflectance and polarization. Thus, the V4 thresholds of `nv >= 70` and `nv >= 60` correspond to retaining approximately 78% and 67% of the available measurements, respectively.
 
 In V4, a new, more stringent criterion was introduced as `quality_flag = 0`, and the numerical flag values associated with the existing criteria were shifted relative to V3. The definitions are summarized below:
 

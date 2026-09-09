@@ -1408,8 +1408,6 @@ The FastMAPOL Level-2 product is designed to support:
   Level-3 gridded product generation
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
 \section{File Organization}\label{file-organization}
 
 The FastMAPOL Level-2 product is organized into several top-level
@@ -2183,14 +2181,18 @@ Criteria & V3 & V4 \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\texttt{chi2\ \textless{}\ 1.5}, \texttt{nv\_ref\ \textgreater{}\ 70},
-and \texttt{nv\_dolp\ \textgreater{}\ 70} & --- & \texttt{0} \\
-\texttt{chi2\ \textless{}\ 1.5}, \texttt{nv\_ref\ \textgreater{}\ 60},
-and \texttt{nv\_dolp\ \textgreater{}\ 60} & \texttt{0} & \texttt{1} \\
-\texttt{chi2\ \textless{}\ 1.5}, \texttt{nv\_ref\ \textgreater{}\ 40},
-and \texttt{nv\_dolp\ \textgreater{}\ 40} & \texttt{1} & \texttt{2} \\
-\texttt{chi2\ \textless{}\ 2.0}, \texttt{nv\_ref\ \textgreater{}\ 30},
-and \texttt{nv\_dolp\ \textgreater{}\ 30} & \texttt{2} & \texttt{3} \\
+\texttt{chi2\ \textless{}=\ 1.5}, \texttt{nv\_ref\ \textgreater{}=\ 70},
+\texttt{nv\_dolp\ \textgreater{}=\ 70} & --- & \texttt{0} \\
+\texttt{chi2\ \textless{}=\ 1.5}, \texttt{nv\_ref\ \textgreater{}=\ 60},
+\texttt{nv\_dolp\ \textgreater{}=\ 60} & \texttt{0} & \texttt{1} \\
+\texttt{chi2\ \textless{}=\ 1.5}, \texttt{nv\_ref\ \textgreater{}=\ 40},
+\texttt{nv\_dolp\ \textgreater{}=\ 40} & \texttt{1} & \texttt{2} \\
+\texttt{chi2\ \textless{}=\ 2.0}, \texttt{nv\_ref\ \textgreater{}=\ 30},
+\texttt{nv\_dolp\ \textgreater{}=\ 30} & \texttt{2} & \texttt{3} \\
+\texttt{chi2\ \textless{}=\ 2.0}, \texttt{nv\_ref\ \textgreater{}=\ 20},
+\texttt{nv\_dolp\ \textgreater{}=\ 20} & \texttt{3} & \texttt{4} \\
+\texttt{chi2\ \textless{}=\ 3.0}, \texttt{nv\_ref\ \textgreater{}=\ 10},
+\texttt{nv\_dolp\ \textgreater{}=\ 10} & \texttt{4} & \texttt{5} \\
 \end{longtable}
 
 This table shows how the quality-flag definitions changed between V3 and
@@ -2198,9 +2200,9 @@ V4. The same selection criteria used for \texttt{quality\_flag\ =\ 0},
 \texttt{1}, and \texttt{2} in V3 correspond to
 \texttt{quality\_flag\ =\ 1}, \texttt{2}, and \texttt{3}, respectively,
 in V4, while V4 introduces an additional \texttt{quality\_flag\ =\ 0}
-criterion with \texttt{chi2\ \textless{}\ 1.5},
-\texttt{nv\_ref\ \textgreater{}\ 70}, and
-\texttt{nv\_dolp\ \textgreater{}\ 70}.
+criterion with \texttt{chi2\ \textless{}=\ 1.5},
+\texttt{nv\_ref\ \textgreater{}=\ 70}, and
+\texttt{nv\_dolp\ \textgreater{}=\ 70}.
 
 The table describes the definitions of the quality flags and should not
 be interpreted as a direct comparison of retrieval quality between V3
@@ -2447,30 +2449,35 @@ fields and the consistency of aerosol and ocean products.
 Global distributions of total, fine-mode, and coarse-mode AOD and SSA at
 556 nm:
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{chapters/../figure/validation_spexone_fig_15_0.04/fig_l3_aerosol_556.png}}
+\centering{
+
+\includegraphics[width=0.9\linewidth,height=\textheight,keepaspectratio]{chapters/../figure/validation_spexone_fig_15_0.04/fig_l3_aerosol_556.png}
 
 }
 
-\caption{Global aerosol products}
+\caption{\label{fig-validation_spexone_v3_aod}Global aerosol products
+from SPEXone. Adapted from Gao et al.
+(\citeproc{ref-Gao:2026aa}{2026}).}
 
 \end{figure}%
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \textbf{Ocean Products}
 
 Global distributions of \(R_{rs}\) (443, 556, 667 nm) and
 chlorophyll-\emph{a}:
 
-\begin{figure}[H]
+\begin{figure}
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{chapters/../figure/validation_spexone_fig_15_0.04/fig_l3_rrs.png}}
+\centering{
+
+\includegraphics[width=0.9\linewidth,height=\textheight,keepaspectratio]{chapters/../figure/validation_spexone_fig_15_0.04/fig_l3_rrs.png}
 
 }
 
-\caption{Global ocean products}
+\caption{\label{fig-validation_spexone_v3_rrs}Global ocean products from
+SPEXone. Adapted from Gao et al. (\citeproc{ref-Gao:2026aa}{2026})}
 
 \end{figure}%
 
@@ -2546,8 +2553,8 @@ a realistic testbed for retrieval evaluation:
 
 \caption{\label{fig-validation_harp2_l1c}Global HARP2 simulation (550
 nm): reflectance (a--c) and DoLP (d--f) from 15 orbits on 21 March 2022,
-showing three along-track viewing angles. Figure is adopted from Gao et
-al. (\citeproc{ref-Gao:2023aa}{2023})}
+showing three along-track viewing angles. Adapted from Gao et al.
+(\citeproc{ref-Gao:2023aa}{2023}).}
 
 \end{figure}%
 
@@ -2580,7 +2587,7 @@ truth and meaningful uncertainty estimates:
 
 \caption{\label{fig-validation_harp2_l2}Retrieval performance: AOD (550
 nm) and ALH showing retrieval, truth, and uncertainty (a--c, d--f).
-Figure is adopted from Gao et al. (\citeproc{ref-Gao:2023aa}{2023})}
+Adapted from Gao et al. (\citeproc{ref-Gao:2023aa}{2023})}
 
 \end{figure}%
 
@@ -2613,8 +2620,8 @@ Their comparisons are shown in Figure~\ref{fig-validation_harp2_unc},
 
 \caption{\label{fig-validation_harp2_unc}Theoretical (red) vs.~retrieved
 (blue) uncertainties as a function of AOD for AOD, SSA, mr, reff, veff,
-wind speed, and Chl a. AOD ranges from 0.01--0.45 (Δ=0.01). Figure is
-adopted from Gao et al. (\citeproc{ref-Gao:2023aa}{2023})}
+wind speed, and Chl a. AOD ranges from 0.01--0.45 (Δ=0.01). Adapted from
+Gao et al. (\citeproc{ref-Gao:2023aa}{2023})}
 
 \end{figure}%
 
@@ -2678,8 +2685,9 @@ depth (AOD) - Total, fine-mode, and coarse-mode single-scattering albedo
 
 \textbf{Ocean} - Ocean remote-sensing reflectance (\(R_{rs}\))
 
-\textbf{LAND} - Land surface reflectance (\(R_{rs}\)) - \#\# Validation
-Strategy
+\textbf{LAND} - Land surface reflectance (\(\rho_s\))
+
+\section{Validation Strategy}\label{validation-strategy-1}
 
 Validation is organized into three levels similar to SPEXone (Gao et al.
 (\citeproc{ref-Gao:2026aa}{2026})):
@@ -2719,8 +2727,6 @@ Global distributions of total, fine-mode, and coarse-mode AOD and SSA at
 
 \end{figure}%
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
 \textbf{LAND Products}
 
 Global distributions of \(\rho_{s}\) in RGB (667, 556, 443 nm):
@@ -2731,7 +2737,7 @@ Global distributions of \(\rho_{s}\) in RGB (667, 556, 443 nm):
 
 }
 
-\caption{Global ocean products}
+\caption{Global land products (unpublished).}
 
 \end{figure}%
 
@@ -3206,7 +3212,8 @@ transfer calculations.
 }
 
 \caption{\label{fig-system}Spherical-shell geometry and transformation
-between satellite and surface viewing geometries.}
+between satellite and surface viewing geometries. Adapted from Gao et
+al. (\citeproc{ref-Gao:2023aa}{2023}).}
 
 \end{figure}%
 
@@ -3887,7 +3894,8 @@ with the smaller \(256^3\) architecture.
 (top) and DoLP (bottom) as a function of NN architecture and
 training-data size. The NN architectures are represented using compact
 notation; for example, \(128^3\) denotes three hidden layers with 128
-nodes per layer.}
+nodes per layer. Adapted from Gao et al.
+(\citeproc{ref-Gao:2023aa}{2023}).}
 
 \end{figure}%
 
@@ -4011,12 +4019,12 @@ Jacobian matrix calculations are advantageous for efficient processing,
 which was a motivation for the use of NN forward models for AirHARP in
 Gao et al. (\citeproc{ref-Gao:2021aa}{2021}). In this work, we discuss
 the use of automatic differentiation to compute the Jacobian matrix
-analytically, as opposed to numerically through finite differencing, by
-exploiting the differentiable properties of the NN models. For details
-on the NN and its training strategies, please refer to
-Appendix~\ref{sec-nn-model} and Gao et al.
-(\citeproc{ref-Gao:2021aa}{2021}) and Gao et al.
-(\citeproc{ref-Gao:2023aa}{2023}).
+analytically (\citeproc{ref-Gao:2021bb}{Gao et al. 2021}), as opposed to
+numerically through finite differencing, by exploiting the
+differentiable properties of the NN models. For details on the NN and
+its training strategies, please refer to Appendix~\ref{sec-nn-model} and
+discussions in Gao et al. (\citeproc{ref-Gao:2021aa}{2021}) and Gao et
+al. (\citeproc{ref-Gao:2023aa}{2023}).
 
 The NN forward model developed in Gao et al.
 (\citeproc{ref-Gao:2021aa}{2021}) is a feed-forward neural network as
@@ -4035,8 +4043,8 @@ differentiation}\label{mathematical-formula-of-automatic-differentiation}
 
 For application to multi-angle measurements, the NN needs to be called
 to simulate \(\mathbf{y}\) for each set of viewing and solar geometries
-for the state vector \(\mathbf{x}\). Elements of the Jacobian matrix are
-defined as follows:
+for the state vector \(\mathbf{x}\) (\citeproc{ref-Gao:2021bb}{Gao et
+al. 2021}). Elements of the Jacobian matrix are defined as follows:
 
 \begin{equation}\phantomsection\label{eq-jacobian}{
 \mathbf{K}_{mij}
@@ -4318,7 +4326,8 @@ for first guess and full retrievals Appendix~\ref{sec-nn-model}.
 \caption{\label{fig-nn-ad}Comparison of the retrieved \(\chi^2\)
 distributions and computational times using finite-difference (FD),
 forward-mode automatic differentiation (AD), and reverse-mode AD
-methods.}
+methods. Adapted from
+(\citeproc{ref-Gao:2011bb}{\textbf{Gao:2011bb?}}).}
 
 \end{figure}%
 
@@ -4341,7 +4350,7 @@ measurements and forward model through the retrieval based on the
 sensitivity of the forward model to the retrieved state parameters.
 Corresponding uncertainty products were generated for the global
 Day-In-The-Life (DITL) test dataset and are available through OB.DAAC
-(\citeproc{ref-Gao:2022aa}{Gao et al. 2022}). However, because of the
+(\citeproc{ref-Gao:2023aa}{Gao et al. 2023}). However, because of the
 additional computational cost associated with uncertainty propagation,
 these uncertainty variables are not included in the current FastMAPOL V3
 and V4 operational products and are planned for a future release.
@@ -4708,7 +4717,7 @@ Error Propagation (MCEP) approach for comparing pixel-level theoretical
 uncertainties with retrieval errors. The theoretical uncertainties are
 used to generate random error realizations, which can then be compared
 statistically with errors calculated from retrieval and reference
-values.}
+values. Adapted from Gao et al. (\citeproc{ref-Gao:2022aa}{2022})}
 
 \end{figure}%
 

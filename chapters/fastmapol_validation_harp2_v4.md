@@ -20,8 +20,8 @@ FastMAPOL performs coupled aerosol–surface retrievals using an optimal-estimat
 - Ocean remote-sensing reflectance ($R_{rs}$)
 
 **LAND**
-- Land surface reflectance ($R_{rs}$)
-- 
+- Land surface reflectance ($\rho_s$)
+  
 ## Validation Strategy
 
 Validation is organized into three levels similar to SPEXone (@Gao:2026aa):
@@ -46,13 +46,11 @@ Global distributions of total, fine-mode, and coarse-mode AOD and SSA at 556 nm:
 
 ![Global aerosol products](../figure/fig_harp2_l3_aod.png)
 
----
-
 **LAND Products**
 
 Global distributions of $\rho_{s}$ in RGB (667, 556, 443 nm):
 
-![Global ocean products](../figure/fig_harp2_l3_rhos.png)
+![Global land products (unpublished).](../figure/fig_harp2_l3_rhos.png)
 
 The retrieved $\rho_s$ contains both spectral and angular dimensions. The results shown here represent the angular mean after BRDF correction (`rhos_nadir_mean`).
 

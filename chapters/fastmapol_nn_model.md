@@ -137,7 +137,7 @@ $$
 
 A similar level of normalized accuracy for reflectance can be achieved with the smaller $256^3$ architecture.
 
-![Training cost functions for reflectance (top) and DoLP (bottom) as a function of NN architecture and training-data size. The NN architectures are represented using compact notation; for example, $128^3$ denotes three hidden layers with 128 nodes per layer.](../figure/fig_rt_nn.png){#fig-nn-cost width=10cm}
+![Training cost functions for reflectance (top) and DoLP (bottom) as a function of NN architecture and training-data size. The NN architectures are represented using compact notation; for example, $128^3$ denotes three hidden layers with 128 nodes per layer. Adapted from @Gao:2023aa.](../figure/fig_rt_nn.png){#fig-nn-cost width=10cm}
 
 ## Cascaded Neural Network Forward Model
 

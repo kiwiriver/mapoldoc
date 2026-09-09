@@ -43,15 +43,13 @@ The objective is to assess both the physical realism of the retrieved fields and
 
 Global distributions of total, fine-mode, and coarse-mode AOD and SSA at 556 nm:
 
-![Global aerosol products](../figure/validation_spexone_fig_15_0.04/fig_l3_aerosol_556.png)
-
----
+![Global aerosol products from SPEXone. Adapted from @Gao:2026aa.](../figure/validation_spexone_fig_15_0.04/fig_l3_aerosol_556.png){#fig-validation_spexone_v3_aod width=90%}
 
 **Ocean Products**
 
 Global distributions of $R_{rs}$ (443, 556, 667 nm) and chlorophyll-*a*:
 
-![Global ocean products](../figure/validation_spexone_fig_15_0.04/fig_l3_rrs.png)
+![Global ocean products from SPEXone. Adapted from @Gao:2026aa](../figure/validation_spexone_fig_15_0.04/fig_l3_rrs.png){#fig-validation_spexone_v3_rrs width=90%}
 
 The retrieved $R_{rs}$ contains spectral and angular dimensions. The results shown here represent the BRDF-corrected angular mean.
 

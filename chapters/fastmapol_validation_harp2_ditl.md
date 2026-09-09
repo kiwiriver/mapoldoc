@@ -20,7 +20,7 @@ As shown in @fig-validation_harp2_l1c, A full day of synthetic HARP2 observation
 - DoLP shows enhanced sensitivity to aerosol and surface properties.  
 - Reflectance and DoLP provide complementary information content.  
 
-![Global HARP2 simulation (550 nm): reflectance (a–c) and DoLP (d–f) from 15 orbits on 21 March 2022, showing three along-track viewing angles. Figure is adopted from @Gao:2023aa](../figure/validation_harp2_l1c.png){#fig-validation_harp2_l1c width=80%}
+![Global HARP2 simulation (550 nm): reflectance (a–c) and DoLP (d–f) from 15 orbits on 21 March 2022, showing three along-track viewing angles. Adapted from @Gao:2023aa.](../figure/validation_harp2_l1c.png){#fig-validation_harp2_l1c width=80%}
 
 ## Geophysical retrievals with pixel-wise uncertainty
 Based on the synthetic data, retrieval results as shown in @fig-validation_harp2_l2 demonstrate strong agreement with truth and meaningful uncertainty estimates:
@@ -29,7 +29,7 @@ Based on the synthetic data, retrieval results as shown in @fig-validation_harp2
 - Multiple geophysical variables are retrieved simultaneously, with ALH shown as an example.  
 - Pixel-wise uncertainty reflects scene dependence, with larger values at low AOD and limited angular sampling.  
 
-![Retrieval performance: AOD (550 nm) and ALH showing retrieval, truth, and uncertainty (a–c, d–f). Figure is adopted from @Gao:2023aa](../figure/validation_harp2_l2.png){#fig-validation_harp2_l2 width=80%}
+![Retrieval performance: AOD (550 nm) and ALH showing retrieval, truth, and uncertainty (a–c, d–f). Adapted from @Gao:2023aa](../figure/validation_harp2_l2.png){#fig-validation_harp2_l2 width=80%}
 
 ## Uncertainty closure analysis
 Theoretical uncertainties are derived from error propagation, while realized uncertainties are computed from retrieval–truth differences. Their comparisons are shown in @fig-validation_harp2_unc, 
@@ -38,7 +38,7 @@ Theoretical uncertainties are derived from error propagation, while realized unc
 - Decreasing uncertainty with increasing aerosol loading.  
 - Underestimation of uncertainty in low-AOD conditions and for weakly constrained parameters.  
 
-![Theoretical (red) vs. retrieved (blue) uncertainties as a function of AOD for AOD, SSA, mr, reff, veff, wind speed, and Chl a. AOD ranges from 0.01–0.45 (Δ=0.01). Figure is adopted from @Gao:2023aa](../figure/validation_harp2_unc.png){#fig-validation_harp2_unc width=90%}
+![Theoretical (red) vs. retrieved (blue) uncertainties as a function of AOD for AOD, SSA, mr, reff, veff, wind speed, and Chl a. AOD ranges from 0.01–0.45 (Δ=0.01). Adapted from @Gao:2023aa](../figure/validation_harp2_unc.png){#fig-validation_harp2_unc width=90%}
 
 ## Summary
 

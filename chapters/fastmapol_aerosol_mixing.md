@@ -21,8 +21,6 @@ All formulations strictly follow the implementation, including:
 - Internal normalization strategy  
 - Use of **unnormalized phase matrices** during accumulation  
 
----
-
 ## Single-Particle Optical Properties
 
 For each particle size parameter \( x \), refractive index \( m = m_r + i m_i \), and scattering angle \( \theta \), the LUT provides:
@@ -45,8 +43,6 @@ These quantities are:
 - Defined on discrete grids of \( (m_r, m_i, x) \)  
 - Interpolated to target refractive indices  
 - **Not scaled by number density or volume**  
-
----
 
 ## Size Distribution and Volume-Based Weighting
 
@@ -96,8 +92,6 @@ C_{\text{ext},2}
 \frac{dV}{d\ln r}\, d\ln r
 $$
 
----
-
 ## Internal Normalization Strategy
 
 After size integration, the implementation performs an intermediate normalization:
@@ -118,8 +112,6 @@ where:
 
 - $\text{norm}_k$ is the integrated volume normalization factor  
 - $\mathbf{P}_k$ is a normalized phase matrix per mode  
-
----
 
 ## Mode Aggregation (Exact Implementation Form)
 
@@ -161,8 +153,6 @@ $$
 
 This quantity is **not normalized**.
 
----
-
 ## Fine and Coarse Mode Separation
 
 Modes are partitioned into:
@@ -181,8 +171,6 @@ Each produces:
 - $(\mathbf{M}_{3,f}, C_{\text{sca},f}, C_{\text{ext},f}, n_f)$
 - $(\mathbf{M}_{3,c}, C_{\text{sca},c}, C_{\text{ext},c}, n_c)$
 
----
-
 ## Shape-Resolved Computation
 
 The full computation is performed separately for:
@@ -194,8 +182,6 @@ Important:
 
 - The **same size distribution** is used for both shapes  
 - Only scattering properties differ  
-
----
 
 ## Shape Mixing (Implementation-Exact Form)
 
@@ -220,8 +206,6 @@ f_{\text{sph},f}\, C_{\text{ext},f}^{(s)}
 $$
 
 Similarly for coarse mode.
-
----
 
 ### Phase Matrix (Critical Detail)
 
@@ -271,8 +255,6 @@ $$
 P = f P_s + (1-f)P_n
 $$
 
----
-
 ## AOD-Based Scaling
 
 To enforce a prescribed aerosol optical depth \( \tau_{\text{ref}} \):
@@ -286,8 +268,6 @@ This scaling propagates to:
 - Number density  
 - Cross sections  
 - Phase matrix  
-
----
 
 ## Final Output Quantities
 
@@ -303,7 +283,6 @@ $$
 P(\theta) = \frac{\mathbf{M}_3(\theta)}{C_{\text{sca}}}
 $$
 
----
 
 ## Full Computational Flow
 
@@ -317,8 +296,6 @@ $$
 8. Shape mixing  
 9. AOD scaling  
 10. Repeat for all wavelengths  
-
----
 
 ## Key Implementation Characteristics
 

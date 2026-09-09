@@ -17,8 +17,6 @@ The FastMAPOL Level-2 product is designed to support:
 - algorithm validation
 - Level-3 gridded product generation
 
----
-
 ## File Organization
 
 The FastMAPOL Level-2 product is organized into several top-level groups. Each group contains variables associated with a specific component of the retrieval system.

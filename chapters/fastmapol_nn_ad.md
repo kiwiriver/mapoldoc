@@ -7,7 +7,7 @@
 | AD Forward| — | — | — | x | — |
 | AD Reverse| x | x | x | — | — |
 
-The MAP retrievals are often computationally expensive due to their high dimensionality and iterative nature, with multiple forward model and Jacobian calculations. The data screening approach developed here further increases the demand for CPU computations because the retrieval must be repeated several times. Therefore, fast forward model and Jacobian matrix calculations are advantageous for efficient processing, which was a motivation for the use of NN forward models for AirHARP in @Gao:2021aa. In this work, we discuss the use of automatic differentiation to compute the Jacobian matrix analytically, as opposed to numerically through finite differencing, by exploiting the differentiable properties of the NN models. For details on the NN and its training strategies, please refer to @sec-nn-model and @Gao:2021aa and @Gao:2023aa.
+The MAP retrievals are often computationally expensive due to their high dimensionality and iterative nature, with multiple forward model and Jacobian calculations. The data screening approach developed here further increases the demand for CPU computations because the retrieval must be repeated several times. Therefore, fast forward model and Jacobian matrix calculations are advantageous for efficient processing, which was a motivation for the use of NN forward models for AirHARP in @Gao:2021aa. In this work, we discuss the use of automatic differentiation to compute the Jacobian matrix analytically [@Gao:2021bb], as opposed to numerically through finite differencing, by exploiting the differentiable properties of the NN models. For details on the NN and its training strategies, please refer to @sec-nn-model and discussions in @Gao:2021aa and @Gao:2023aa.
 
 The NN forward model developed in @Gao:2021aa is a feed-forward neural network as defined in @tbl-nn-forward, where $\mathbf{h}_0=\mathbf{x}$ is the input layer that contains all 15 forward model parameters. Two sets of weight matrices $\mathbf{W}_{p+1}$ and bias vectors $\mathbf{b}_{p+1}$ have been determined from the NN training process for reflectance and DoLP, respectively [@Gao:2021aa; @Gao:2023aa].
 
@@ -15,7 +15,7 @@ Correspondingly, $\mathbf{y}$ is the output layer for either reflectance or DoLP
 
 ## Mathematical formula of automatic differentiation
 
-For application to multi-angle measurements, the NN needs to be called to simulate $\mathbf{y}$ for each set of viewing and solar geometries for the state vector $\mathbf{x}$. Elements of the Jacobian matrix are defined as follows:
+For application to multi-angle measurements, the NN needs to be called to simulate $\mathbf{y}$ for each set of viewing and solar geometries for the state vector $\mathbf{x}$ [@Gao:2021bb]. Elements of the Jacobian matrix are defined as follows:
 
 $$
 \mathbf{K}_{mij}
@@ -127,4 +127,4 @@ Using AD further reduced the average CPU retrieval time to approximately 0.6 s w
 
 Among the tested approaches, reverse-mode AD provides the highest computational efficiency. FastMAPOL therefore uses reverse-mode AD as the default method for calculating the Jacobian matrix during retrieval optimization. Further speed up is discussed by the use of cascading NN for first guess and full retrievals @sec-nn-model.
 
-![Comparison of the retrieved $\chi^2$ distributions and computational times using finite-difference (FD), forward-mode automatic differentiation (AD), and reverse-mode AD methods.](../figure/fig_rt_ad.png){#fig-nn-ad width=10cm}
+![Comparison of the retrieved $\chi^2$ distributions and computational times using finite-difference (FD), forward-mode automatic differentiation (AD), and reverse-mode AD methods. Adapted from @Gao:2011bb.](../figure/fig_rt_ad.png){#fig-nn-ad width=10cm}

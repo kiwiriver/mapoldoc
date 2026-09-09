@@ -94,12 +94,14 @@ In V4, a new, more stringent criterion was introduced as `quality_flag = 0`, and
 
 | Criteria | V3 | V4 |
 |---|---:|---:|
-| `chi2 < 1.5`, `nv_ref > 70`, and `nv_dolp > 70` | — | `0` |
-| `chi2 < 1.5`, `nv_ref > 60`, and `nv_dolp > 60` | `0` | `1` |
-| `chi2 < 1.5`, `nv_ref > 40`, and `nv_dolp > 40` | `1` | `2` |
-| `chi2 < 2.0`, `nv_ref > 30`, and `nv_dolp > 30` | `2` | `3` |
+| `chi2 <= 1.5`, `nv_ref >= 70`, `nv_dolp >= 70` | —   | `0` |
+| `chi2 <= 1.5`, `nv_ref >= 60`, `nv_dolp >= 60` | `0` | `1` |
+| `chi2 <= 1.5`, `nv_ref >= 40`, `nv_dolp >= 40` | `1` | `2` |
+| `chi2 <= 2.0`, `nv_ref >= 30`, `nv_dolp >= 30` | `2` | `3` |
+| `chi2 <= 2.0`, `nv_ref >= 20`, `nv_dolp >= 20` | `3` | `4` |
+| `chi2 <= 3.0`, `nv_ref >= 10`, `nv_dolp >= 10` | `4` | `5` |
 
-This table shows how the quality-flag definitions changed between V3 and V4. The same selection criteria used for `quality_flag = 0`, `1`, and `2` in V3 correspond to `quality_flag = 1`, `2`, and `3`, respectively, in V4, while V4 introduces an additional `quality_flag = 0` criterion with `chi2 < 1.5`, `nv_ref > 70`, and `nv_dolp > 70`.
+This table shows how the quality-flag definitions changed between V3 and V4. The same selection criteria used for `quality_flag = 0`, `1`, and `2` in V3 correspond to `quality_flag = 1`, `2`, and `3`, respectively, in V4, while V4 introduces an additional `quality_flag = 0` criterion with `chi2 <= 1.5`, `nv_ref >= 70`, and `nv_dolp >= 70`.
 
 The table describes the definitions of the quality flags and should not be interpreted as a direct comparison of retrieval quality between V3 and V4, because Level-1 calibration and other retrieval inputs also changed between product versions.
 

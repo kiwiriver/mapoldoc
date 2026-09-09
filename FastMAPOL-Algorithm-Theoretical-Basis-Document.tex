@@ -298,8 +298,8 @@ Color \textperiodcentered\ Land \\
 \textbf{Website} &
 %%\href{https://fastmapol.github.io/mapol-doc/}{FastMAPOL ATBD} \\
 \url{https://fastmapol.github.io/mapol-doc/} \\
-\textbf{Version} & 0.3 \\
-\textbf{Date} & 2026-09-03 \\
+\textbf{Version} & 0.4 \\
+\textbf{Date} & 2026-09-09 \\
 \end{tabular}%
 }%
 }
@@ -365,7 +365,7 @@ information.
 \textbf{Keywords} & PACE · FastMAPOL · Multi-angle Polarimetry · Aerosol
 · Ocean Color · Land \\
 \textbf{Website} & \url{https://fastmapol.github.io/mapol-doc/} \\
-\textbf{Version} & 0.3 \\
+\textbf{Version} & 0.4 \\
 \end{longtable}
 
 \section*{How to Cite}\label{how-to-cite}
@@ -378,7 +378,7 @@ When using or referring to FastMAPOL ATBD, please cite this document as:
 Gao, M., P. Zhai, K. Aryal, K. Knobelspiesse, and B. Franz.
 \emph{FastMAPOL Algorithm Theoretical Basis Document: Coupled Aerosol,
 Ocean, and Land Retrievals from PACE Multi-Angle Polarimetry}. NASA
-Goddard Space Flight Center, Version 0.3, 2026.
+Goddard Space Flight Center, Version 0.4, 2026.
 \textless{}https://fastmapol.github.io/mapol-doc/\textgreater{}
 \end{quote}
 
@@ -799,9 +799,9 @@ NASA Earthdata. The following tutorials from PACE Help Hub demonstrate
 how to search for, download, analyze, and visualize the data products
 using Jupyter notebooks.
 
-These notebook tutorials are available through the
+The atmspheric notebook tutorials are available through the
 \href{https://nasa.github.io/oceandata-notebooks/sections/cloud-atmosphere.html}{PACE
-Help Hub}.
+Help Hub Atmosphere Section}.
 
 \begin{itemize}
 \tightlist
@@ -818,6 +818,10 @@ Help Hub}.
   Aerosols (FastMAPOL)} - Analyzing aerosol retrievals over ocean from
   SPEXone measurements with the FastMAPOL algorithm
 \end{itemize}
+
+The land notebook tutorials are available through the
+\href{https://nasa.github.io/oceandata-notebooks/sections/land.html}{PACE
+Help Hub Land Section}.
 
 \bookmarksetup{startatroot}
 
@@ -2079,27 +2083,30 @@ Criteria
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\texttt{0} & \texttt{chi2\ \textless{}\ 1.5},
-\texttt{nv\_ref\ \textgreater{}\ 160}, and
-\texttt{nv\_dolp\ \textgreater{}\ 160} \\
-\texttt{1} & \texttt{chi2\ \textless{}\ 1.5},
-\texttt{nv\_ref\ \textgreater{}\ 140}, and
-\texttt{nv\_dolp\ \textgreater{}\ 140} \\
-\texttt{2} & \texttt{chi2\ \textless{}\ 2.0},
-\texttt{nv\_ref\ \textgreater{}\ 140}, and
-\texttt{nv\_dolp\ \textgreater{}\ 140} \\
-\texttt{3} & \texttt{chi2\ \textless{}\ 2.0},
-\texttt{nv\_ref\ \textgreater{}\ 100}, and
-\texttt{nv\_dolp\ \textgreater{}\ 100} \\
-\texttt{\textgreater{}3} & Progressively relaxed criteria associated
-with larger \texttt{chi2} and/or smaller \texttt{nv\_ref} and
-\texttt{nv\_dolp} \\
+\texttt{0} & \texttt{chi2\ \textless{}=\ 1.5},
+\texttt{nv\_ref\ \textgreater{}=\ 160},
+\texttt{nv\_dolp\ \textgreater{}=\ 160} \\
+\texttt{1} & \texttt{chi2\ \textless{}=\ 1.5},
+\texttt{nv\_ref\ \textgreater{}=\ 140},
+\texttt{nv\_dolp\ \textgreater{}=\ 140}; excluding flag \texttt{0} \\
+\texttt{2} & \texttt{chi2\ \textless{}=\ 2.0},
+\texttt{nv\_ref\ \textgreater{}=\ 140},
+\texttt{nv\_dolp\ \textgreater{}=\ 140}; excluding flags \texttt{0–1} \\
+\texttt{3} & \texttt{chi2\ \textless{}=\ 2.0},
+\texttt{nv\_ref\ \textgreater{}=\ 100},
+\texttt{nv\_dolp\ \textgreater{}=\ 100}; excluding flags \texttt{0–2} \\
+\texttt{4} & \texttt{chi2\ \textless{}=\ 3.0},
+\texttt{nv\_ref\ \textgreater{}=\ 60},
+\texttt{nv\_dolp\ \textgreater{}=\ 60}; excluding flags \texttt{0–3} \\
 \end{longtable}
+
+The quality flags progressively relaxed criteria associated with larger
+\texttt{chi2} and/or smaller \texttt{nv\_ref} and \texttt{nv\_dolp}.
 
 For the current SPEXone FastMAPOL products, there are 34 spectral bands
 at 5 viewing angles, corresponding to a maximum of 170 reflectance or
-DoLP measurements. The thresholds of \texttt{nv\ \textgreater{}\ 160}
-and \texttt{nv\ \textgreater{}\ 140} therefore correspond to retaining
+DoLP measurements. The thresholds of \texttt{nv\ \textgreater{}=\ 160}
+and \texttt{nv\ \textgreater{}=\ 140} therefore correspond to retaining
 approximately 94\% and 82\% of the available measurements, respectively.
 
 The SPEXone quality-flag definition remains unchanged between V3 and V4.
@@ -2123,8 +2130,8 @@ improvements in Level-1 calibration.
 The V4 quality flags are defined as follows:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1687}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8313}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \texttt{quality\_flag}
@@ -2135,26 +2142,32 @@ V4 criteria
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\texttt{0} & \texttt{chi2\ \textless{}\ 1.5},
-\texttt{nv\_ref\ \textgreater{}\ 70}, and
-\texttt{nv\_dolp\ \textgreater{}\ 70} \\
-\texttt{1} & \texttt{chi2\ \textless{}\ 1.5},
-\texttt{nv\_ref\ \textgreater{}\ 60}, and
-\texttt{nv\_dolp\ \textgreater{}\ 60} \\
-\texttt{2} & \texttt{chi2\ \textless{}\ 1.5},
-\texttt{nv\_ref\ \textgreater{}\ 40}, and
-\texttt{nv\_dolp\ \textgreater{}\ 40} \\
-\texttt{3} & \texttt{chi2\ \textless{}\ 2.0},
-\texttt{nv\_ref\ \textgreater{}\ 30}, and
-\texttt{nv\_dolp\ \textgreater{}\ 30} \\
-\texttt{\textgreater{}3} & Progressively relaxed criteria associated
-with larger \texttt{chi2} and/or smaller \texttt{nv\_ref} and
-\texttt{nv\_dolp} \\
+\texttt{0} & \texttt{chi2\ \textless{}=\ 1.5},
+\texttt{nv\_ref\ \textgreater{}=\ 70},
+\texttt{nv\_dolp\ \textgreater{}=\ 70} \\
+\texttt{1} & \texttt{chi2\ \textless{}=\ 1.5},
+\texttt{nv\_ref\ \textgreater{}=\ 60},
+\texttt{nv\_dolp\ \textgreater{}=\ 60}; excluding flag \texttt{0} \\
+\texttt{2} & \texttt{chi2\ \textless{}=\ 1.5},
+\texttt{nv\_ref\ \textgreater{}=\ 40},
+\texttt{nv\_dolp\ \textgreater{}=\ 40}; excluding flags \texttt{0–1} \\
+\texttt{3} & \texttt{chi2\ \textless{}=\ 2.0},
+\texttt{nv\_ref\ \textgreater{}=\ 30},
+\texttt{nv\_dolp\ \textgreater{}=\ 30}; excluding flags \texttt{0–2} \\
+\texttt{4} & \texttt{chi2\ \textless{}=\ 2.0},
+\texttt{nv\_ref\ \textgreater{}=\ 20},
+\texttt{nv\_dolp\ \textgreater{}=\ 20}; excluding flags \texttt{0–3} \\
+\texttt{5} & \texttt{chi2\ \textless{}=\ 3.0},
+\texttt{nv\_ref\ \textgreater{}=\ 10},
+\texttt{nv\_dolp\ \textgreater{}=\ 10}; excluding flags \texttt{0–4} \\
 \end{longtable}
+
+The quality flags progressively relaxed criteria associated with larger
+\texttt{chi2} and/or smaller \texttt{nv\_ref} and \texttt{nv\_dolp}.
 
 For HARP2, a total of 90 angular measurements are available for
 reflectance and polarization. Thus, the V4 thresholds of
-\texttt{nv\ \textgreater{}\ 70} and \texttt{nv\ \textgreater{}\ 60}
+\texttt{nv\ \textgreater{}=\ 70} and \texttt{nv\ \textgreater{}=\ 60}
 correspond to retaining approximately 78\% and 67\% of the available
 measurements, respectively.
 
